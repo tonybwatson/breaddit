@@ -1,12 +1,16 @@
 import React from 'react'
 import { Container, Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
+import breadditLogo from '../img/breadditLogoCorrected.png'
+import CreateUser from './CreateUser.js'
+import LogIn from './LogIn.js'
 
 export default function MyNavbar() {
     return (
         <>
-            <Navbar bg="light" expand="lg">
+            <Navbar variant="dark" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                    <Navbar.Brand href="#"><img src={breadditLogo} 
+                    alt="breaddit logo: a piece of bread in an orange circle" height="50px"></img></Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
@@ -15,18 +19,18 @@ export default function MyNavbar() {
                             navbarScroll
                         >
                             <Nav.Link href="#action1">Home</Nav.Link>
-                            <Nav.Link href="#action2">Link</Nav.Link>
-                            <NavDropdown title="Link" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+                            <NavDropdown title="Sign Up" id="navbarScrollingDropdown">
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action5">
-                                    Something else here
+                                    <CreateUser/>
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="#" disabled>
-                                Link
-                            </Nav.Link>
+                            <NavDropdown title="Log In" id="navbarScrollingDropdown">
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#action5">
+                                    <LogIn/>
+                                </NavDropdown.Item>
+                            </NavDropdown>
                         </Nav>
                         <Form className="d-flex">
                             <FormControl
@@ -35,7 +39,6 @@ export default function MyNavbar() {
                                 className="me-2"
                                 aria-label="Search"
                             />
-                            <Button variant="outline-success">Search</Button>
                         </Form>
                     </Navbar.Collapse>
                 </Container>

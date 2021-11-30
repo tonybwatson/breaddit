@@ -9,26 +9,27 @@ export default function MyNavbar() {
         <>
             <Navbar variant="dark" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="#"><img src={breadditLogo} 
-                    alt="breaddit logo: a piece of bread in an orange circle" height="50px"></img></Navbar.Brand>
+                    <Navbar.Brand href="#"><img src={breadditLogo}
+                        alt="breaddit logo: a piece of bread in an orange circle"
+                        height="50px"></img>
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
                             className="me-auto my-2 my-lg-0"
                             style={{ maxHeight: '100px' }}
-                            navbarScroll
-                        >
+                            navbarScroll>
                             <Nav.Link href="#action1">Home</Nav.Link>
                             <NavDropdown title="Sign Up" id="navbarScrollingDropdown">
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action5">
-                                    <CreateUser/>
+                                    <CreateUser />
                                 </NavDropdown.Item>
                             </NavDropdown>
                             <NavDropdown title="Log In" id="navbarScrollingDropdown">
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action5">
-                                    <LogIn/>
+                                    <LogIn />
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>

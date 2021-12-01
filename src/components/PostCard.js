@@ -24,7 +24,7 @@ export default function PostCard({ post }) {
                             <Card.Title as={Link} to={`br/${post.subreaddit.name}/${post.id}`}>{post.title}</Card.Title>
                         </Col>
                         <Col>
-                            <Card.Header>Posted in br/{post.subreaddit.name}</Card.Header>
+                            <Card.Header as={Link} to={`br/${post.subreaddit.name}`}>Posted in br/{post.subreaddit.name}</Card.Header>
                         </Col>
                     </Row>
                     <Card.Text>
@@ -32,7 +32,7 @@ export default function PostCard({ post }) {
                     </Card.Text>
                     <Row>
                         <Col>
-                            <Button href="#" variant="dark">Comments</Button>
+                            <Button as={Link} to={`br/${post.subreaddit.name}/${post.id}`} variant="dark">Comments</Button>
                             <Button href="#" variant="dark">Share</Button>
                         </Col>
                         <Col>

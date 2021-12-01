@@ -1,13 +1,19 @@
 import React from 'react'
-import {  useParams } from 'react-router-dom';
-import {Col, Row, Card, Button } from 'react-bootstrap'
+import { useParams, Link } from 'react-router-dom';
+import { Col, Row, Card, Button } from 'react-bootstrap'
 import upvote from '../img/upvote.png'
 import downvote from '../img/downvote.png'
 
 export default function Post(props) {
-    let {subreaddit, postid} = useParams();
-    const post = props.posts.find(p => p.id === parseInt(postid))
-    console.log(post)
+    let { subreaddit, postid } = useParams();
+    let tmpPost = undefined;
+    if(props.post !== undefined){
+        tmpPost = props.post;
+    } else {
+        tmpPost = props.posts.find(p => p.id === parseInt(postid));
+    }
+console.log(subreaddit)
+    // console.log(tmpPost)
     return (
         <div>
             <Card className="d-flex justify-content-center"
@@ -23,15 +29,15 @@ export default function Post(props) {
                             <img src={downvote} alt="downvote button" className="arrow"></img>
                         </Col>
                         <Col>
-                            <Card.Title >{post.title}</Card.Title>
+                            <Card.Title >{tmpPost.title}</Card.Title>
                         </Col>
                         <Col>
-                            <Card.Header>Posted in br/{post.subreaddit.name}</Card.Header>
+                            <Card.Header as={Link} to={`br/${tmpPost.subreaddit.name}`}>Posted in br/{tmpPost.subreaddit.name}</Card.Header>
                         </Col>
                     </Row>
-                     <Card.Text>
-                         {post.content}
-                     </Card.Text>
+                    <Card.Text>
+                        {tmpPost.content}
+                    </Card.Text>
                     <Row>
                         <Col>
                             <Button href="#" variant="dark">Comment</Button>
@@ -42,7 +48,7 @@ export default function Post(props) {
             </Card>
             <Card>
                 Comments
-            </Card>
+</Card>
         </div>
     )
 }

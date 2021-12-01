@@ -1,11 +1,13 @@
 import React from 'react'
-import { Button, Card, Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import {  useParams } from 'react-router-dom';
+import {Col, Row, Card, Button } from 'react-bootstrap'
 import upvote from '../img/upvote.png'
 import downvote from '../img/downvote.png'
 
-export default function PostCard({ post }) {
-
+export default function Post(props) {
+    let {subreaddit, postid} = useParams();
+    const post = props.posts.find(p => p.id === parseInt(postid))
+    console.log(post)
     return (
         <div>
             <Card className="d-flex justify-content-center"
@@ -21,28 +23,26 @@ export default function PostCard({ post }) {
                             <img src={downvote} alt="downvote button" className="arrow"></img>
                         </Col>
                         <Col>
-                            <Card.Title as={Link} to={`br/${post.subreaddit.name}/${post.id}`}>{post.title}</Card.Title>
+                            <Card.Title >{post.title}</Card.Title>
                         </Col>
                         <Col>
                             <Card.Header>Posted in br/{post.subreaddit.name}</Card.Header>
                         </Col>
                     </Row>
-                    <Card.Text>
-                        {post.content}
-                    </Card.Text>
+                     <Card.Text>
+                         {post.content}
+                     </Card.Text>
                     <Row>
                         <Col>
-                            <Button href="#" variant="dark">Comments</Button>
+                            <Button href="#" variant="dark">Comment</Button>
                             <Button href="#" variant="dark">Share</Button>
-                        </Col>
-                        <Col>
-                            <Button href="#" variant="dark">Join</Button>
                         </Col>
                     </Row>
                 </Card.Body>
             </Card>
-            <br></br>
+            <Card>
+                Comments
+            </Card>
         </div>
     )
 }
-

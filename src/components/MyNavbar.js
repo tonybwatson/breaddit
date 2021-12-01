@@ -1,13 +1,18 @@
 import React from 'react'
-import { Container, Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
+import {Outlet} from 'react-router-dom'
+import { Container, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 import breadditLogo from '../img/breadditLogoCorrected.png'
 import CreateUser from './CreateUser.js'
 import LogIn from './LogIn.js'
 
+
 export default function MyNavbar() {
     return (
         <>
-            <Navbar variant="dark" expand="lg">
+            <Navbar variant="dark" 
+            expand="lg" 
+            // fixed="top"
+            >
                 <Container fluid>
                     <Navbar.Brand href="#"><img src={breadditLogo}
                         alt="breaddit logo: a piece of bread in an orange circle"
@@ -44,6 +49,7 @@ export default function MyNavbar() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </>
+            <Outlet />
+       </>
     )
 }

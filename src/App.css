@@ -11,3 +11,14 @@
     box-shadow: 0 5px 15px rgba(227, 195, 250, 0.4);
 }
 
+h1 {
+    color: white;
+}
+
+.card-title, .card-header {
+    color: white;
+}
+
+.card-title:hover, .card-header:hover {
+    color: #FF5700;
+}

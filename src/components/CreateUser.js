@@ -35,7 +35,7 @@ export default function InfoInput(props) {
 
     return (
         <Container>
-            <h1>New User? Create an account!</h1>
+            <h2>New User? Create an account!</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Name</Form.Label>

@@ -11,7 +11,7 @@ function App() {
 
     const [posts, setPosts] = useState([])
     const savePosts = (res) => {
-        console.log(res)
+        // console.log(res)
         setPosts(res.data.data)
     }
 
@@ -25,8 +25,7 @@ function App() {
             <Route path="/" element={<MyNavbar />}>
                 <Route index element={<Home posts={posts} />} />
                 <Route path="br/:subreaddit" element={<Subreaddit />} />
-                <Route path="br/:subreaddit/:postid" element={<Post posts={posts} />} />
-
+                <Route path="br/:subreaddit/:postid" element={<Post posts={posts} /> } />
                 {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}

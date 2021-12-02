@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Col } from 'react-bootstrap'
+import { Container, Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import axiosHelper from '../utilities/axiosHelper'
-import Post from '../pages/Post'
+import PostCard from '../components/PostCard'
+import Sidebar from '../components/Sidebar'
 
 export default function Subreaddit() {
     const [posts, setPosts] = useState([])
@@ -17,16 +18,21 @@ export default function Subreaddit() {
     }, [subreaddit])
 
     var tmpPosts = [];
-    if(posts !== undefined){
+    if (posts !== undefined) {
         tmpPosts = posts;
     };
 
     return (
-        
-        <div>
-            <Col xs={10}>
-                {tmpPosts.map((post, i) => <Post key={i} posts={[]} post={post} />)}
-            </Col>
-        </div>
+        <Container>
+            {/* <Row><h1>br/{tmpPosts[0].subreaddit.name}</h1></Row> */}
+            <Row>
+                <Col xs={10}>
+                    {tmpPosts.map((post, i) => <PostCard key={i} post={post} subreaddit/>)}
+                </Col>
+                <Col xs={2}>
+                    <Sidebar />
+                </Col>
+            </Row>
+        </Container>
     )
 }

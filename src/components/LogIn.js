@@ -39,7 +39,7 @@ export default function LoginInput(props) {
 	return (
 		<>
 			<Container>
-				<h1>Returning User? Log in!</h1>
+				<h2>Returning User? Log in!</h2>
 				<Form onSubmit={handleSubmit}>
 					<Form.Group className="mb-3" controlId="formLoginEmail">
 						<Form.Label>User Name</Form.Label>

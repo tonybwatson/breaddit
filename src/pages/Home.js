@@ -8,7 +8,7 @@ export default function Home(props) {
         <Container>
             <Row>
                 <Col xs={10}>
-                    {props.posts.map((post, i) => <PostCard key={i} post={post} />)}
+                    {props.posts.map((post, i) => <PostCard key={i} post={post} home/>)}
                 </Col>
                 <Col xs={2}>
                     <Sidebar />

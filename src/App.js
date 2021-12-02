@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
-
+    const [token, setToken] = useState('')
     const [posts, setPosts] = useState([])
     const savePosts = (res) => {
         // console.log(res)
@@ -22,7 +22,7 @@ function App() {
     return (
 
         <Routes>
-            <Route path="/" element={<MyNavbar />}>
+            <Route path="/" element={<MyNavbar setToken={setToken} token={token}/>}>
                 <Route index element={<Home posts={posts} />} />
                 <Route path="br/:subreaddit" element={<Subreaddit />} />
                 <Route path="br/:subreaddit/:postid" element={<Post posts={posts} /> } />

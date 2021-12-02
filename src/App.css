@@ -22,3 +22,14 @@ h1 {
 .card-title:hover, .card-header:hover {
     color: #FF5700;
 }
+.dropdown-menu {
+    width: 300px;
+}
+
+/* #react-aria6758568467-10 {
+    background-color: #343a40;
+}
+
+#react-aria6758568467-12 {
+    background-color: #343a40;
+} */

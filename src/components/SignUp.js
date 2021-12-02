@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
-import axios from 'axios'
+import axiosHelper from '../utilities/axiosHelper'
 
-export default function InfoInput(props) {
+export default function SignUp(props) {
 
     const [data, setData] = useState({})
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('', {
-            user_name: data.formBasicName,
-            email: data.formBasicEmail,
-            password: data.formBasicPassword
+        axiosHelper({
+            route: 'tokens/create', method: 'post', data: {
+                user_name: data.formBasicName,
+                email: data.formBasicEmail,
+                password: data.formBasicPassword
+            }
         })
             .then(function (response) {
                 console.log(response);
-                const token = response.data.data.token
+                const token = response.data.data.remember_token
                 localStorage.setItem('token', token)
                 props.setToken(token)
                 console.log(token)

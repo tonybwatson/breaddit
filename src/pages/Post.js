@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 import PostCard from '../components/PostCard'
 
 export default function Post(props) {
@@ -15,6 +15,6 @@ export default function Post(props) {
 
     return !!tmpPost ? (
         <PostCard post={tmpPost} postPage />
-    ) : <>loafing</>
+    ) : <><h1>loafing</h1></> 
 
 }

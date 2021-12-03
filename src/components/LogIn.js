@@ -80,7 +80,7 @@ export default function LoginInput(props) {
 
                     <Button variant="dark" type="submit">
                         Log in
-        </Button>
+                    </Button>
                 </Form>
             </Container>
         </>

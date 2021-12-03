@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
-import axiosHelper from '../utilities/axiosHelper'
+import axios from 'axios'
 
 export default function SignUp(props) {
 
@@ -8,19 +8,34 @@ export default function SignUp(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axiosHelper({
-            route: 'tokens/create', method: 'post', data: {
+        axios({
+            method: 'post',
+            url: 'https://breadditlaravel-tonybwatson324900.codeanyapp.com/api/v1/users',
+            data: {
                 user_name: data.formBasicName,
                 email: data.formBasicEmail,
-                password: data.formBasicPassword
-            }
+                password: data.formBasicPassword,
+                client_secret: 'hxcAejs9hajhG1mtoJKUthkwOeW9JLTqUb6xO9Md',
+                client_id: 2,
+                grant_type: 'password',
+                scope: ''
+            },
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+                'Access-Control-Allow-Credentials': true,
+                // 'Authorization': 'Bearer ' + 'token'
+            },
         })
             .then(function (response) {
                 console.log(response);
-                const token = response.data.data.remember_token
+                const token = response.data.access_token
                 localStorage.setItem('token', token)
                 props.setToken(token)
-                console.log(token)
+                console.log(response)
             })
             .catch(function (error) {
                 console.log(error);

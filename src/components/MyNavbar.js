@@ -4,9 +4,11 @@ import { Container, Navbar, Nav, Dropdown, Form, FormControl, Button } from 'rea
 import breadditLogo from '../img/breadditLogoCorrected.png'
 import SignUp from './SignUp.js'
 import LogIn from './LogIn.js'
+import LogOut from './LogOut.js'
 
 
 export default function MyNavbar(props) {
+
     return (
         <>
             <Navbar variant="dark"
@@ -24,23 +26,23 @@ export default function MyNavbar(props) {
                             className="me-auto my-2 my-lg-0"
                             style={{ maxHeight: '100px' }}
                             navbarScroll>
-                            {props.token.length > 0 ? <Button>Logout</Button>
+                            {props.token.length > 0 ? <LogOut setToken={props.setToken} token={props.token} />
                                 :
                                 <>
-                            <Dropdown id="navbarScrollingDropdown" autoClose="outside">
-                                <Dropdown.Toggle>Sign Up</Dropdown.Toggle>
-                                <Dropdown.Divider />
-                                <Dropdown.Menu>
-                                        <SignUp setToken={props.setToken}/>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            <Dropdown id="navbarScrollingDropdown" autoClose="outside">
-                                <Dropdown.Toggle>Sign In</Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                        <LogIn setToken={props.setToken}/>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            </>
+                                    <Dropdown id="navbarScrollingDropdown" autoClose="outside">
+                                        <Dropdown.Toggle>Sign Up</Dropdown.Toggle>
+                                        <Dropdown.Divider />
+                                        <Dropdown.Menu>
+                                            <SignUp setToken={props.setToken} />
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                    <Dropdown id="navbarScrollingDropdown" autoClose="outside">
+                                        <Dropdown.Toggle>Sign In</Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <LogIn setToken={props.setToken} />
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </>
                             }
                         </Nav>
                         <Form className="d-flex">

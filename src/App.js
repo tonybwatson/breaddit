@@ -18,7 +18,12 @@ function App() {
     useEffect(() => {
         axiosHelper({ route: 'posts', method: 'get', successMethod: savePosts })
     }, [])
-
+    useEffect(() => {
+        let lstoken = window.localStorage.getItem('token')
+        if (lstoken) {
+            setToken(lstoken)
+        }
+    }, [])
     return (
 
         <Routes>

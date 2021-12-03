@@ -24,7 +24,7 @@ export default function Subreaddit() {
 
     return (
         <Container>
-            {/* <Row><h1>br/{tmpPosts[0].subreaddit.name}</h1></Row> */}
+            <Row><h1>Viewing br/{tmpPosts[0]?.subreaddit?.name}</h1></Row>
             <Row>
                 <Col xs={10}>
                     {tmpPosts.map((post, i) => <PostCard key={i} post={post} subreaddit/>)}

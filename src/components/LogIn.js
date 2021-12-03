@@ -30,7 +30,7 @@ export default function LoginInput(props) {
             },
         })
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 const token = response.data.access_token
 
                 localStorage.setItem('token', token)
@@ -40,7 +40,7 @@ export default function LoginInput(props) {
                 props.setToken(token)
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
                 alert('User email or password is incorrect!')
             });
     }

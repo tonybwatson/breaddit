@@ -6,7 +6,6 @@ export default function LogOut(props) {
     // let token = localStorage.getItem('token')
 
     const handleSubmit = (e) => {
-        console.log('hello')
 		e.preventDefault()
 		axios({
 			method: "get",

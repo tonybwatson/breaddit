@@ -31,14 +31,14 @@ export default function SignUp(props) {
             },
         })
             .then(function (response) {
-                console.log(response);
-                const token = response.data.access_token
+                // console.log(response);
+                const token = response.data.data.token
                 localStorage.setItem('token', token)
                 props.setToken(token)
-                console.log(response)
+                // console.log(response)
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
             });
     }
 

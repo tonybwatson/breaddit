@@ -4,8 +4,8 @@ import { Button, Card, Form, Modal } from 'react-bootstrap'
 
 export default function CreateSub() {
     const [show, setShow] = useState(false);
-    const [subName, setSubName] = useState({});
-    // const token = localStorage.getItem('token');
+    const [subName, setSubName] = useState('');
+    const token = localStorage.getItem('token');
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -17,11 +17,7 @@ export default function CreateSub() {
             method: 'post',
             url: 'https://breadditlaravel-tonybwatson324900.codeanyapp.com/api/v1/subreaddits',
             data: {
-                name: subName.formBasicName,
-                client_secret: 'hxcAejs9hajhG1mtoJKUthkwOeW9JLTqUb6xO9Md',
-                client_id: 2,
-                grant_type: 'password',
-                scope: ''
+                name: subName,
             },
             headers: {
                 'Accept': 'application/json',
@@ -30,7 +26,7 @@ export default function CreateSub() {
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
                 'Access-Control-Allow-Credentials': true,
-                // 'Authorization': 'Bearer ' + 'token'
+                'Authorization': 'Bearer ' + token
             },
         })
             .then(function (response) {
@@ -43,10 +39,9 @@ export default function CreateSub() {
             });
     }
     const handleChange = (e) => {
-        const newsubName = { ...subName }
-        newsubName[e.target.id] = e.target.value
+        const newsubName = e.target.value
         setSubName(newsubName)
-        console.log(newsubName)
+        // console.log(newsubName)
     }
 
     return (
@@ -64,7 +59,7 @@ export default function CreateSub() {
                 <Modal.Body>
 
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlid="formBasicName">
+                        <Form.Group className="mb-3" controlid="formSubName">
                             <Form.Control type="name"
                                 // id="name"
                                 placeholder="New subreaddit name"

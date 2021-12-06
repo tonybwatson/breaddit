@@ -24,7 +24,7 @@ export default function PostCard({ post, home, postPage }) {
                         <Col>
                             {postPage ? <Card.Title >{post.title}</Card.Title>
                                 : <Card.Title as={Link} to={`/br/${post.subreaddit.name}/${post.id}`}>{post.title}</Card.Title>
-                            }
+                            } 
                         </Col>
                         {home &&
                             <Col>

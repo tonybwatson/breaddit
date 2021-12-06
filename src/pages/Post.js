@@ -1,10 +1,12 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import Loading from '../components/Loading'
 import PostCard from '../components/PostCard'
 
 export default function Post(props) {
     let { subreaddit, postid } = useParams();
     let tmpPost = undefined;
+
     if (props.post !== undefined) {
         tmpPost = props.post;
     } else {
@@ -15,6 +17,5 @@ export default function Post(props) {
 
     return !!tmpPost ? (
         <PostCard post={tmpPost} postPage />
-    ) : <><h1>loafing</h1></> 
-
+    ) : <Loading />
 }

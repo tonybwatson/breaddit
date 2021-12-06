@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { Container, Navbar, Nav, Dropdown, Form, FormControl, Button } from 'react-bootstrap'
+import { Container, Navbar, Nav, Dropdown, Form, FormControl } from 'react-bootstrap'
 import breadditLogo from '../img/breadditLogoCorrected.png'
 import SignUp from './SignUp.js'
 import LogIn from './LogIn.js'

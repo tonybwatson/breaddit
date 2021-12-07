@@ -2,22 +2,25 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Button, Card, Form, Modal } from 'react-bootstrap'
 
-export default function CreateSub() {
+export default function CreatePost(props) {
     const [show, setShow] = useState(false);
-    const [subName, setSubName] = useState('');
+    const [postData, setPostData] = useState({});
     const token = localStorage.getItem('token');
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    // console.log({ postData })
+    // console.log(props.subId)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         axios({
             method: 'post',
-            url: 'https://breadditlaravel-tonybwatson324900.codeanyapp.com/api/v1/subreaddits',
+            url: 'https://breadditlaravel-tonybwatson324900.codeanyapp.com/api/v1/posts',
             data: {
-                name: subName,
+                title: postData.formPostTitle,
+                content: postData.formPostContent,
+                sub_id: props.subId
             },
             headers: {
                 'Accept': 'application/json',
@@ -30,34 +33,19 @@ export default function CreateSub() {
             },
         })
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 handleClose();
-                return (
-                    <Modal show={show} onHide={handleClose} centered>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Subreaddit Succesfully Created!</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Footer>
-                            <Button variant="dark" onClick={handleClose}>
-                                Cancel
-                    </Button>
-                            <Button variant="dark" onClick={handleSubmit}>
-                                Create
-                    </Button>
-                        </Modal.Footer>
-                    </Modal>
-                )
                 // console.log(response)
             })
             .catch(function (error) {
                 console.log(error);
-                return (<p>words</p>)
             });
     }
     const handleChange = (e) => {
-        const newsubName = e.target.value
-        setSubName(newsubName)
-        // console.log(newsubName)
+        const newPostData = {...postData}
+        newPostData[e.target.id] = e.target.value
+        setPostData(newPostData)
+        // console.log(newPostData)
     }
 
     return (
@@ -65,32 +53,45 @@ export default function CreateSub() {
 
             <Card>
                 <Button variant="dark" onClick={handleShow}>
-                    Create your own Subreaddit
+                    Create a Post
                 </Button>
             </Card>
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create a Subreaddit</Modal.Title>
+                    <Modal.Title>Posting as (Username) in (Subreaddit name here)</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlid="formSubName">
-                            <Form.Control type="name"
-                                // id="name"
-                                placeholder="New subreaddit name"
+                        <Form.Group className="mb-3" controlId="formPostTitle">
+                            <Form.Control
+                                type="name"
+                                placeholder="Post Title"
                                 onChange={handleChange}
-                                value={subName.name}
+                                defaultValue={postData.title}
                             />
                         </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formPostContent">
+                            <Form.Control
+                                type="content"
+                                placeholder="Post Text"
+                                onChange={handleChange}
+                                defaultValue={postData.content}
+                            />
+                        </Form.Group>
+
+                        {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox" label="Text post?" />
+                        </Form.Group> */}
                     </Form>
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="dark" onClick={handleClose}>
+                    <Button type="button" variant="dark" onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button variant="dark" onClick={handleSubmit}>
+                    <Button type="button" variant="dark" onClick={handleSubmit}>
                         Create
                     </Button>
                 </Modal.Footer>

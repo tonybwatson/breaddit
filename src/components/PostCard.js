@@ -13,7 +13,7 @@ export default function PostCard({ post, home, postPage }) {
                 bg="dark"
                 text="white"
                 border="white"
-                style={{ width: '80%' }}>
+                style={{ width: '90%' }}>
                 <Card.Body>
                     <Row>
                         <Col xs={1}>

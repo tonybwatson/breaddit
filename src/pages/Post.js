@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import Loading from '../components/Loading'
 import PostCard from '../components/PostCard'
+import { Container } from 'react-bootstrap'
 
 export default function Post(props) {
     let { subreaddit, postid } = useParams();
@@ -16,6 +17,8 @@ export default function Post(props) {
     console.log(tmpPost)
 
     return !!tmpPost ? (
-        <PostCard post={tmpPost} postPage />
+        <Container xs={10}>
+            <PostCard post={tmpPost} postPage />
+        </Container>
     ) : <Loading />
 }

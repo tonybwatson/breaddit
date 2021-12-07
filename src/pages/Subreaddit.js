@@ -8,50 +8,46 @@ import Sidebar from '../components/Sidebar'
 import SidebarUnauth from '../components/SidebarUnauth'
 
 export default function Subreaddit(props) {
-    const [posts, setPosts] = useState([])
-    let subId = props.subId;
-    const savePosts = (res) => {
-        
-        subId = res.data[0].sub_id;
-        props.setSubId(subId);
-        // console.log(subId)
-        setPosts(res.data)
-    }
+	const [posts, setPosts] = useState([])
+	const [loading, setLoading] = useState(true)
+	// let subId = props.subId;
+	const savePosts = (res) => {
+		console.log(res)
+		// subId = res.data.subreaddit[0].id;
+		props.setSubId(res.data.subreaddit[0].id);
+		// console.log(subId)
+		setPosts(res.data.posts)
+		setLoading(false)
+	}
 
-    let { subreaddit } = useParams();
-    useEffect(() => {
-        axiosHelper({ route: 'posts_by_sub/' + subreaddit, method: 'get', successMethod: savePosts });
-        // console.log(subreaddit);
-    }, [])
+	let { subreaddit } = useParams();
+	useEffect(() => {
+		setLoading(true)
+		axiosHelper({ route: 'posts_by_sub/' + subreaddit, method: 'get', successMethod: savePosts });
+		// console.log(subreaddit);
+	}, [subreaddit])
 
-    var tmpPosts = [];
-    if (posts !== undefined) {
-        tmpPosts = posts;
-    };
 
-    return !!tmpPosts.length > 0 && localStorage.getItem('token') ? (
-        <Container>
-            <Row><h1>Viewing br/{tmpPosts[0]?.subreaddit?.name}</h1></Row>
-            <Row>
-                <Col xs={10}>
-                    {tmpPosts.map((post, i) => <PostCard key={i} post={post} subreaddit/>)}
-                </Col>
-                <Col xs={2}>
-                    <Sidebar subId={subId}/>
-                </Col>
-            </Row>
-        </Container>
-    ) : !!tmpPosts.length > 0 ? (
-        <Container>
-            <Row><h1>Viewing br/{tmpPosts[0]?.subreaddit?.name}</h1></Row>
-            <Row>
-                <Col xs={10}>
-                    {tmpPosts.map((post, i) => <PostCard key={i} post={post} subreaddit/>)}
-                </Col>
-                <Col xs={2}>
-                    <SidebarUnauth />
-                </Col>
-            </Row>
-        </Container>
-    ) : <Loading />
+	// var tmpPosts = [];
+	// if (posts !== undefined) {
+	// 	tmpPosts = posts;
+	// };
+	// console.log(tmpPosts)
+
+	return (
+		<Container>
+			<Row><h1>Viewing br/{subreaddit}</h1></Row>
+			<Row>
+				<Col xs={10}>
+					{loading ? <Loading /> : (posts.length > 0
+						? posts.map((post, i) => <PostCard key={i} post={post} subreaddit />)
+						: <p className='text-white'>No Posts To Show - Be the first to create a post!</p>)
+					}
+				</Col>
+				<Col xs={2}>
+					{localStorage.getItem('token') ? <Sidebar subId={props.subId} /> : <SidebarUnauth />}
+				</Col>
+			</Row>
+		</Container>
+	)
 }

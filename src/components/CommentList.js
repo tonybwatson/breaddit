@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Col, Container } from 'react-bootstrap'
+import { Button, Card, Col, Container } from 'react-bootstrap'
 
 export default function CommentList(props) {
 
@@ -10,7 +10,8 @@ export default function CommentList(props) {
                     <Container xs={10}>
                         <Col xs={10}>
                             <Card.Text key={index}><u>Posted by {comment.user.user_name} at <em>{comment.updated_at}</em></u></Card.Text>
-                            <Card.Text key={index} className="mb-2">{comment.content}</Card.Text>
+                            <Card.Text key={index} className="mb-1">{comment.content}</Card.Text>
+                            <Button className="mb-3" variant="dark"><em>Reply to this comment</em></Button>
                         </Col>
                     </Container>
                 </>

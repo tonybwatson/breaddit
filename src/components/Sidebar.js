@@ -4,6 +4,7 @@ import React from 'react'
 import CreateSub from './CreateSub'
 import CreatePost from './CreatePost'
 import Subreaddit from '../pages/Subreaddit';
+// import SingleModalForm from './SingleModalForm'
 
 export default function Sidebar(props) {
     
@@ -11,6 +12,7 @@ export default function Sidebar(props) {
         <>
             <CreatePost subId={props.subId} />
             <CreateSub />
+            {/* <SingleModalForm route={'subreaddits'} modalButtonText={'words'} placeHolderText={'placeholder'} /> */}
         </>
     ) : <CreateSub />
 }

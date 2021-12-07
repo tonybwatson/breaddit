@@ -1,12 +1,14 @@
-import React from 'react'
-import { Button, Card, Col, Row } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, Card, Col, Form, Modal, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import upvote from '../img/upvote.png'
 import downvote from '../img/downvote.png'
 import CommentList from './CommentList'
+import CommentButton from './CommentButton'
+import axios from 'axios'
 
-export default function PostCard({ post, home, postPage }) {
-    // render post vs tmppost
+export default function PostCard({ post, home, postPage, subreaddit }) {
+// console.log({post})
     return (
         <div>
             <Card className="d-flex justify-content-center"
@@ -24,9 +26,14 @@ export default function PostCard({ post, home, postPage }) {
                         <Col>
                             {postPage ? <Card.Title >{post.title}</Card.Title>
                                 : <Card.Title as={Link} to={`/br/${post.subreaddit.name}/${post.id}`}>{post.title}</Card.Title>
-                            } 
+                            }
                         </Col>
                         {home &&
+                            <Col>
+                                <Card.Header as={Link} to={`/br/${post.subreaddit.name}`}>Posted in br/{post.subreaddit.name}</Card.Header>
+                            </Col>
+                        }
+                        {postPage &&
                             <Col>
                                 <Card.Header as={Link} to={`/br/${post.subreaddit.name}`}>Posted in br/{post.subreaddit.name}</Card.Header>
                             </Col>
@@ -37,8 +44,17 @@ export default function PostCard({ post, home, postPage }) {
                     </Card.Text>
                     <Row>
                         <Col>
-                            {/* todo: conditionally render comment vs comments */}
-                            <Button as={Link} to={`/br/${post.subreaddit.name}/${post.id}`} variant="dark">Comments</Button>
+                            {home &&
+                                <Button as={Link} to={`/br/${post.subreaddit.name}/${post.id}`} variant="dark">Comments</Button>
+                            }
+                            {subreaddit &&
+                                <Button as={Link} to={`/br/${post.subreaddit.name}/${post.id}`} variant="dark">Comments</Button>
+                            }
+                            {postPage &&
+                                <>
+                                    <CommentButton post={post}/>
+                                </>
+                            }
                             <Button href="#" variant="dark">Share</Button>
                         </Col>
                         {home &&
@@ -50,7 +66,6 @@ export default function PostCard({ post, home, postPage }) {
                     <Card.Text>Posted by {post.user.user_name}</Card.Text>
                 </Card.Body>
             </Card>
-            {/* todo: conditionally render comment list */}
             {postPage &&
                 <CommentList comments={post.comments} />
             }

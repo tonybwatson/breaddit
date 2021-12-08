@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { Card, Button, Form, Modal } from 'react-bootstrap'
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function CommentButton(props) {
 	const [show, setShow] = useState(false);
+	const [success, setSuccess] = useState(false);
 	const [commentData, setCommentData] = useState()
 	const token = localStorage.getItem('token');
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const navigate = useNavigate()
 
-// console.log({props})
+	console.log({props})
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		axios({
@@ -19,7 +20,7 @@ export default function CommentButton(props) {
 			url: 'https://breadditlaravel-tonybwatson324900.codeanyapp.com/api/v1/comments',
 			data: {
 				content: commentData,
-				post_id: props.post.comments[0].post_id
+				post_id: props.post.id
 			},
 			headers: {
 				'Accept': 'application/json',
@@ -33,7 +34,8 @@ export default function CommentButton(props) {
 		})
 			.then(function (response) {
 				// console.log(response);
-				handleClose();
+				// handleClose();
+				setSuccess(!success);
 				// console.log(response)
 			})
 			.catch(function (error) {
@@ -47,9 +49,9 @@ export default function CommentButton(props) {
 
 	const handleRedirect = () => {
 		handleClose()
-		navigate(`/${props.post.comments[0].post_id}`)
+		navigate(`/br/${props.post.subreaddit.name}/${props.post.id}`)
 	}
-	
+
 	return (
 		<>
 			<Card>
@@ -62,28 +64,36 @@ export default function CommentButton(props) {
 					<Modal.Title>Comment</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-
-					<Form onSubmit={handleSubmit}>
-						<Form.Group className="mb-3" controlId="formComment">
-							<Form.Control
-								type="name"
-								placeholder="Comment Text"
-								onChange={handleChange}
-								defaultValue={commentData}
-							/>
-						</Form.Group>
-					</Form>
-
+					{success ? 'Comment created successfully. Click to view your comment!'
+						: <Form onSubmit={handleSubmit}>
+							<Form.Group className="mb-3" controlId="formComment">
+								<Form.Control
+									type="name"
+									placeholder="Comment Text"
+									onChange={handleChange}
+									defaultValue={commentData}
+								/>
+							</Form.Group>
+						</Form>
+					}
 				</Modal.Body>
 				<Modal.Footer>
+					{success ?
+						<Button variant="dark" onClick={handleRedirect}>
+							Continue
+				 		</Button>
+						:
+						<>
 					<Button type="button" variant="dark" onClick={handleClose}>
-						Cancel
+							Cancel
     				</Button>
 					<Button type="button" variant="dark" onClick={handleSubmit}>
-						Create
+							Create
     				</Button>
+					</>
+					}
 				</Modal.Footer>
-				</Modal>
+			</Modal>
 		</>
 	)
 }

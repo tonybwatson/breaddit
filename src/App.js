@@ -8,37 +8,51 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
-    const [token, setToken] = useState('')
-    const [posts, setPosts] = useState([])
-    const [subId, setSubId] = useState(0)
-    const savePosts = (res) => {
-        // console.log(res)
-        setPosts(res.data.data)
-    }
+	const [subId, setSubId] = useState(0)
+	const [posts, setPosts] = useState([])
+	const savePosts = (res) => {
+		// console.log(res)
+		setPosts(res.data.data)
+	}
+	useEffect(() => {
+		axiosHelper({ route: 'posts', method: 'get', successMethod: savePosts })
+	}, [])
 
-    useEffect(() => {
-        axiosHelper({ route: 'posts', method: 'get', successMethod: savePosts })
-    }, [])
-    useEffect(() => {
-        let lstoken = window.localStorage.getItem('token')
-        if (lstoken) {
-            setToken(lstoken)
-        }
-    }, [])
-    return (
 
-        <Routes>
-            <Route path="/" element={<MyNavbar setToken={setToken} token={token}/>}>
-                <Route index element={<Home posts={posts} />} />
-                <Route path="br/:subreaddit" element={<Subreaddit setSubId={setSubId} subId={subId}/>} />
-                <Route path="br/:subreaddit/:postid" element={<Post posts={posts} /> } />
-                {/* Using path="*"" means "match anything", so this route
+
+	const [token, setToken] = useState('')
+	useEffect(() => {
+		let lstoken = window.localStorage.getItem('token')
+		if (lstoken) {
+			setToken(lstoken)
+		}
+	}, [])
+
+
+	const [userData, setUserData] = useState({})
+	const saveUserData = (res) => {
+		console.log(res)
+		setUserData(res.data)
+	}
+	useEffect(() => {
+		if (token.length > 0) {
+			axiosHelper({ route: 'users', method: 'get', successMethod: saveUserData })
+		}
+	}, [token])
+	return (
+
+		<Routes>
+			<Route path="/" element={<MyNavbar setToken={setToken} token={token} />}>
+				<Route index element={<Home posts={posts} userData={userData} />} />
+				<Route path="br/:subreaddit" element={<Subreaddit setSubId={setSubId} subId={subId} userData={userData} />} />
+				<Route path="br/:subreaddit/:postid" element={<Post posts={posts} userData={userData}/>} />
+				{/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}
-                {/* <Route path="*" element={<NoMatch />} /> */}
-            </Route>
-        </Routes>
-    );
+				{/* <Route path="*" element={<NoMatch />} /> */}
+			</Route>
+		</Routes>
+	);
 }
 
 export default App;

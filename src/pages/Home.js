@@ -10,7 +10,7 @@ export default function Home(props) {
         <Container>
             <Row>
                 <Col xs={10}>
-                    {props.posts.map((post, i) => <PostCard key={i} post={post} home />)}
+                    {props.posts.map((post, i) => <PostCard key={i} post={post} home userData={props.userData}  />)}
                 </Col>
                 <Col xs={2}>
                     <Sidebar />
@@ -21,7 +21,7 @@ export default function Home(props) {
         <Container>
             <Row>
                 <Col xs={10}>
-                    {props.posts.map((post, i) => <PostCard key={i} post={post} home />)}
+                    {props.posts.map((post, i) => <PostCard key={i} post={post} home userData={props.userData} />)}
                 </Col>
                 <Col xs={2}>
                     <SidebarUnauth />

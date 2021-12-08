@@ -18,7 +18,7 @@ export default function Post(props) {
 
     return !!tmpPost ? (
         <Container xs={10}>
-            <PostCard post={tmpPost} postPage />
+            <PostCard post={tmpPost} postPage  userData={props.userData} />
         </Container>
     ) : <Loading />
 }

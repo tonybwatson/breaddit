@@ -6,7 +6,7 @@ export const axiosHelper = ({
     data = {},
     successMethod = r => console.log(r),
     failureMethod = e => console.log(e),
-    headers
+    headers,
 }) => {
     return axios({
         method,

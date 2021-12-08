@@ -64,8 +64,8 @@ export default function CreateSub() {
 					<Modal.Title>Create a Subreaddit</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{success ? `Success Creating New Subreddit ${subName}!` :
-						<Form onSubmit={handleSubmit}>
+					{success ? `Successfully Created New Subreddit br/${subName}!` 
+					: <Form onSubmit={handleSubmit}>
 							<Form.Group className="mb-3" controlid="formSubName">
 								<Form.Control type="name"
 									// id="name"

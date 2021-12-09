@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Button, Card, Form, Modal } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function CreatePost(props) {
 	const [show, setShow] = useState(false);
+	const [success, setSuccess] = useState(false);
 	const [postData, setPostData] = useState({});
 	const token = localStorage.getItem('token');
-
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	console.log(props)
+	// const navigate = useNavigate()
+
+	// console.log({props})
 	// console.log(props.subId)
 
 	const handleSubmit = (e) => {
@@ -35,17 +39,24 @@ export default function CreatePost(props) {
 			.then(function (response) {
 				// console.log(response);
 				handleClose();
+				setSuccess(!success);
 				// console.log(response)
 			})
 			.catch(function (error) {
 				console.log(error);
 			});
 	}
+
 	const handleChange = (e) => {
 		const newPostData = { ...postData }
 		newPostData[e.target.id] = e.target.value
 		setPostData(newPostData)
 		// console.log(newPostData)
+	}
+
+	const handleRedirect = () => {
+		handleClose();
+		// navigate(`br/${}/${}`)
 	}
 
 	return (
@@ -61,7 +72,7 @@ export default function CreatePost(props) {
 					<Modal.Title>Create a Post!</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-
+				<p>Post titles must be at least 5 characters long</p>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group className="mb-3" controlId="formPostTitle">
 							<Form.Control

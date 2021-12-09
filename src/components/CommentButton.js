@@ -12,7 +12,7 @@ export default function CommentButton(props) {
 	const handleShow = () => setShow(true);
 	const navigate = useNavigate()
 
-	console.log({props})
+	console.log({ props })
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		axios({
@@ -49,7 +49,9 @@ export default function CommentButton(props) {
 
 	const handleRedirect = () => {
 		handleClose()
-		navigate(`/br/${props.post.subreaddit.name}/${props.post.id}`)
+		// navigate(`/br/${props.post.subreaddit.name}/${props.post.id}`)
+		window.location.reload();
+		// window.scrollTo(0,document.body.scrollHeight);
 	}
 
 	return (
@@ -84,13 +86,13 @@ export default function CommentButton(props) {
 				 		</Button>
 						:
 						<>
-					<Button type="button" variant="dark" onClick={handleClose}>
-							Cancel
+							<Button type="button" variant="dark" onClick={handleClose}>
+								Cancel
     				</Button>
-					<Button type="button" variant="dark" onClick={handleSubmit}>
-							Create
+							<Button type="button" variant="dark" onClick={handleSubmit}>
+								Create
     				</Button>
-					</>
+						</>
 					}
 				</Modal.Footer>
 			</Modal>

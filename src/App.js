@@ -11,14 +11,21 @@ function App() {
 	const [subId, setSubId] = useState(0)
 	const [posts, setPosts] = useState([])
 	const savePosts = (res) => {
-		// console.log(res)
+		// console.log({res})
 		setPosts(res.data.data)
 	}
 	useEffect(() => {
 		axiosHelper({ route: 'posts', method: 'get', successMethod: savePosts })
 	}, [])
 
-
+	// const [postVotes, setPostVotes] = useState([])
+	// const savePostVotes = (res) => {
+	// 	// console.log({res})
+	// 	setPostVotes(res.data)
+	// }
+	// useEffect(()=>{
+	// 	axiosHelper({route: 'postvotes', method: 'get', successMethod: savePostVotes})
+	// })
 
 	const [token, setToken] = useState('')
 	useEffect(() => {
@@ -44,7 +51,7 @@ function App() {
 		<Routes>
 			<Route path="/" element={<MyNavbar setToken={setToken} token={token} />}>
 				<Route index element={<Home posts={posts} userData={userData} />} />
-				<Route path="br/:subreaddit" element={<Subreaddit setSubId={setSubId} subId={subId} userData={userData} />} />
+				<Route path="br/:subreaddit" element={<Subreaddit posts={posts} setSubId={setSubId} subId={subId} userData={userData} />} />
 				<Route path="br/:subreaddit/:postid" element={<Post posts={posts} userData={userData}/>} />
 				{/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit

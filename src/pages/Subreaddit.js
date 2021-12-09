@@ -8,6 +8,7 @@ import Sidebar from '../components/Sidebar'
 import SidebarUnauth from '../components/SidebarUnauth'
 
 export default function Subreaddit(props) {
+	console.log({props})
 	const [posts, setPosts] = useState([])
 	const [loading, setLoading] = useState(true)
 	// let subId = props.subId;

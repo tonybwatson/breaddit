@@ -7,12 +7,11 @@ import Subreaddit from '../pages/Subreaddit';
 // import SingleModalForm from './SingleModalForm'
 
 export default function Sidebar(props) {
-    
-    return Subreaddit ? (
-        <>
-            <CreatePost subId={props.subId} />
-            <CreateSub />
-            {/* <SingleModalForm route={'subreaddits'} modalButtonText={'words'} placeHolderText={'placeholder'} /> */}
-        </>
-    ) : <CreateSub />
+
+  return Subreaddit ? (
+    <>
+      <CreatePost subId={props.subId} />
+      <CreateSub />
+    </>
+  ) : <CreateSub />
 }

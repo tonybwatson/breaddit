@@ -1,16 +1,30 @@
-import React, { useState } from 'react'
-import { Button, Card, Col, Form, Modal, Row } from 'react-bootstrap'
+import React from 'react'
+import { Button, Card, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import upvote from '../img/upvote.png'
 import downvote from '../img/downvote.png'
 import CommentList from './CommentList'
 import CommentButton from './CommentButton'
 import DeleteButton from './DeleteButton'
-import ReactPlayer from 'react-player'
 
 export default function PostCard({ post, home, postPage, subreaddit, userData }) {
-	console.log({ post, userData })
+	// console.log({ post, home, postPage, subreaddit, userData })
+let karma = 0;
+console.log(post)
+const postKarma = Object.values(post.post_votes)
+console.log({postKarma})
 
+const postKarmaFunction = () => {
+	for (let i = 0; i < postKarma.length; i++) {
+		if (post.post_votes[i].type_id === 1) {
+			karma++
+		} else if (post.post_votes[i].type_id === 2) {
+			karma--
+		}
+	} 
+}
+postKarmaFunction()
+console.log({karma})
 	return (
 		<div>
 			<Card className="d-flex justify-content-center"
@@ -22,7 +36,9 @@ export default function PostCard({ post, home, postPage, subreaddit, userData })
 					<Row>
 						<Col xs={1}>
 							<img src={upvote} alt="upvote button" className="arrow"></img>
-							<p>405</p>
+
+							<p>{karma}</p>
+
 							<img src={downvote} alt="downvote button" className="arrow"></img>
 						</Col>
 						<Col>
@@ -43,10 +59,6 @@ export default function PostCard({ post, home, postPage, subreaddit, userData })
 					</Row>
 					<Card.Text>
 						{post.content}
-						{/* <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
-						controls={true}
-						light={true} 
-						width={'100%'}/> */}
 					</Card.Text>
 					<Row>
 						<Col>
@@ -70,12 +82,8 @@ export default function PostCard({ post, home, postPage, subreaddit, userData })
 						}
 					</Row>
 					<Card.Text>Posted by {post.user.user_name}</Card.Text>
-					{/* {post.user_id === 101 && <Button>words</Button>} */}
 				</Card.Body>
-
-				{!!userData && post.user.id === userData.id && <DeleteButton route={'posts'} number={post.id} type={'Your Post'} subName={post.subreaddit.name} />}
-
-
+				{!!userData && post.user.id === userData.id && postPage && <DeleteButton route={'posts'} number={post.id} type={'Your Post'} subName={post.subreaddit.name} />}
 			</Card>
 			{postPage &&
 				<CommentList comments={post.comments} />

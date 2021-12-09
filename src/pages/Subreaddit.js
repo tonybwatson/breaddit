@@ -41,12 +41,12 @@ export default function Subreaddit(props) {
 			<Row>
 				<Col xs={10}>
 					{loading ? <Loading /> : (posts.length > 0
-						? posts.map((post, i) => <PostCard key={i} post={post} subreaddit userData={props.userData}  />)
+						? posts.map((post, i) => <PostCard key={i} post={post} subreaddit userData={props.userData} />)
 						: <p className='text-white'>No Posts To Show - Be the first to create a post!</p>)
 					}
 				</Col>
 				<Col xs={2}>
-					{localStorage.getItem('token') ? <Sidebar subId={props.subId} /> : <SidebarUnauth />}
+					{localStorage.getItem('token') ? <Sidebar subId={props.subId} posts={posts} /> : <SidebarUnauth />}
 				</Col>
 			</Row>
 		</Container>

@@ -34,7 +34,6 @@ export default function CommentButton(props) {
 		})
 			.then(function (response) {
 				// console.log(response);
-				// handleClose();
 				setSuccess(!success);
 				// console.log(response)
 			})

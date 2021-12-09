@@ -12,7 +12,6 @@ export default function MyNavbar(props) {
 		<>
 			<Navbar variant="dark"
 				expand="sm"
-			// fixed="top"
 			>
 				<Container fluid>
 					<Navbar.Brand as={Link} to="/"><img src={breadditLogo}

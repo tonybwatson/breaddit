@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Button, Card, Form, Modal } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateSub() {
+export default function CreateSub(props) {
 	const [show, setShow] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [subName, setSubName] = useState('');

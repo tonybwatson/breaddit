@@ -11,10 +11,9 @@ export default function CreatePost(props) {
 	const token = localStorage.getItem('token');
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	// const navigate = useNavigate()
+	const navigate = useNavigate()
 
-	// console.log({props})
-	// console.log(props.subId)
+	console.log({ props })
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -37,10 +36,10 @@ export default function CreatePost(props) {
 			},
 		})
 			.then(function (response) {
-				// console.log(response);
-				handleClose();
 				setSuccess(!success);
-				// console.log(response)
+				setNewPost(response)
+				console.log({ response })
+
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -51,12 +50,15 @@ export default function CreatePost(props) {
 		const newPostData = { ...postData }
 		newPostData[e.target.id] = e.target.value
 		setPostData(newPostData)
-		// console.log(newPostData)
+		// console.log({ newPostData })
 	}
+	const [newPost, setNewPost] = useState('');
 
 	const handleRedirect = () => {
 		handleClose();
-		// navigate(`br/${}/${}`)
+		console.log({newPost})
+		navigate(`/br/${props?.subName[0]?.subreaddit?.name}/${newPost.data.data.id}`)
+		window.location.reload();
 	}
 
 	return (
@@ -72,37 +74,48 @@ export default function CreatePost(props) {
 					<Modal.Title>Create a Post!</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-				<p>Post titles must be at least 5 characters long</p>
-					<Form onSubmit={handleSubmit}>
-						<Form.Group className="mb-3" controlId="formPostTitle">
-							<Form.Control
-								type="name"
-								placeholder="Post Title"
-								onChange={handleChange}
-								defaultValue={postData.title}
-							/>
-						</Form.Group>
-						<Form.Group className="mb-3" controlId="formPostContent">
-							<Form.Control
-								type="content"
-								placeholder="Post Text"
-								onChange={handleChange}
-								defaultValue={postData.content}
-							/>
-						</Form.Group>
-					</Form>
+					{success ? 'Post created successfully. Click to view your post!'
+						:
+						<>
+							<p>Post titles must be at least 5 characters long</p>
+							<Form onSubmit={handleSubmit}>
+								<Form.Group className="mb-3" controlId="formPostTitle">
+									<Form.Control
+										type="name"
+										placeholder="Post Title"
+										onChange={handleChange}
+										defaultValue={postData.title}
+									/>
+								</Form.Group>
+								<Form.Group className="mb-3" controlId="formPostContent">
+									<Form.Control
+										type="content"
+										placeholder="Post Text"
+										onChange={handleChange}
+										defaultValue={postData.content}
+									/>
+								</Form.Group>
+							</Form>
+						</>
+					}
 
 				</Modal.Body>
 				<Modal.Footer>
-					<Button type="button" variant="dark" onClick={handleClose}>
-						Cancel
-                    </Button>
-					<Button type="button" variant="dark" onClick={handleSubmit}>
-						Create
-                    </Button>
+					{success ?
+						<Button variant="dark" onClick={handleRedirect}>
+							Continue
+				 </Button>
+						: <>
+							<Button type="button" variant="dark" onClick={handleClose}>
+								Cancel
+              </Button>
+							<Button type="button" variant="dark" onClick={handleSubmit}>
+								Create
+              </Button>
+						</>
+					}
 				</Modal.Footer>
 			</Modal>
-
 		</div>
 	)
 }

@@ -7,10 +7,12 @@ import Subreaddit from '../pages/Subreaddit';
 // import SingleModalForm from './SingleModalForm'
 
 export default function Sidebar(props) {
-
+console.log({props})
   return Subreaddit ? (
     <>
-      <CreatePost subId={props.subId} />
+      <CreatePost subId={props.subId} 
+			subName={props.posts}
+			/>
       <CreateSub />
     </>
   ) : <CreateSub />

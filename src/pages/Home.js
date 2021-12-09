@@ -7,28 +7,17 @@ import SidebarUnauth from '../components/SidebarUnauth'
 // import InfiniteScroll from 'react-infinite-scroll-component'
 
 export default function Home(props) {
-	return props.posts.length > 0 && localStorage.getItem('token') ? (
-		
+	return props.posts.length > 0 ? (
 		<Container>
 			<Row>
 				<Col xs={10}>
-					{props.posts.map((post, i) => <PostCard key={i} post={post} home userData={props.userData} />)}
+					{props.posts.map((post, i) => <PostCard key={i} post={post} home userData={props.userData} getPosts={props.getPosts} />)}
 				</Col>
 				<Col xs={2}>
-					<Sidebar />
+					{localStorage.getItem('token') ? <Sidebar /> : <SidebarUnauth />}
 				</Col>
 			</Row>
 		</Container>
-	) : props.posts.length > 0 ? (
-		<Container>
-			<Row>
-				<Col xs={10}>
-					{props.posts.map((post, i) => <PostCard key={i} post={post} home userData={props.userData} />)}
-				</Col>
-				<Col xs={2}>
-					<SidebarUnauth />
-				</Col>
-			</Row>
-		</Container>
-	) : <Loading />
+	)
+		: <Loading />
 }

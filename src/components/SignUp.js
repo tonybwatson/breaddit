@@ -15,7 +15,7 @@ export default function SignUp(props) {
         user_name: data.formBasicName,
         email: data.formBasicEmail,
         password: data.formBasicPassword,
-        client_secret: 'FuhaypBi5xX4fag8QvyZlxNdtzrnWetZfMu1yv82',
+        client_secret: 'tsJPMuBrXDJ7cBwnaku6v2KLAK6dMmKBHZXRaDDC',
         client_id: 2,
         grant_type: 'password',
         scope: ''
@@ -85,6 +85,9 @@ export default function SignUp(props) {
             onChange={handleChange}
             defaultValue={data.password}
           />
+					<Form.Text className="text-muted">
+            (Must be at least 8 characters)
+          </Form.Text>
         </Form.Group>
 
         <Button variant="dark" type="submit">

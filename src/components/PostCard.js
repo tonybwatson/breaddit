@@ -1,18 +1,19 @@
 import React from 'react'
 import { Button, Card, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import upvote from '../img/upvote.png'
+import VoteButton from './VoteButton'
 import downvote from '../img/downvote.png'
 import CommentList from './CommentList'
 import CommentButton from './CommentButton'
 import DeleteButton from './DeleteButton'
 
-export default function PostCard({ post, home, postPage, subreaddit, userData }) {
+export default function PostCard(props) {
+	const { post, home, postPage, subreaddit, userData, getPosts } = props
 	// console.log({ post, home, postPage, subreaddit, userData })
 	let karma = 0;
 	// console.log(post)
 	const postKarma = Object.values(post.post_votes)
-	console.log({postKarma})
+	// console.log({postKarma})
 
 	const postKarmaFunction = () => {
 		for (let i = 0; i < postKarma.length; i++) {
@@ -36,11 +37,12 @@ export default function PostCard({ post, home, postPage, subreaddit, userData })
 				<Card.Body>
 					<Row>
 						<Col xs={1}>
-							<img src={upvote} alt="upvote button" className="arrow"></img>
-
+							{/* <img src={upvote} alt="upvote button" className="arrow"></img> */}
+							<VoteButton post_id={post.id} type_id={1} getPosts={getPosts}/>
 							<p>{karma}</p>
+							<VoteButton post_id={post.id} type_id={2} getPosts={getPosts}/>
 
-							<img src={downvote} alt="downvote button" className="arrow"></img>
+							{/* <img src={downvote} alt="downvote button" className="arrow"></img> */}
 						</Col>
 						<Col>
 							{postPage ? <Card.Title >{post.title}</Card.Title>

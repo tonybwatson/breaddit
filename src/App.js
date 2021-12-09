@@ -15,8 +15,10 @@ function App() {
 		setPosts(res.data.data)
 	}
 	useEffect(() => {
-		axiosHelper({ route: 'posts', method: 'get', successMethod: savePosts })
+		getPosts()
 	}, [])
+
+	const getPosts = () => axiosHelper({ route: 'posts', method: 'get', successMethod: savePosts })
 
 	// const [postVotes, setPostVotes] = useState([])
 	// const savePostVotes = (res) => {
@@ -50,14 +52,14 @@ function App() {
 	return (
 
 		<Routes>
-			<Route path="/" element={<MyNavbar setToken={setToken} token={token} userName={userData.user_name}/>}>
-				<Route index element={<Home posts={posts} userData={userData} />} />
-				<Route path="br/:subreaddit" element={<Subreaddit posts={posts} setSubId={setSubId} subId={subId} userData={userData} />} />
-				<Route path="br/:subreaddit/:postid" element={<Post posts={posts} userData={userData}/>} />
+			<Route path="/" element={<MyNavbar setToken={setToken} token={token} userName={userData.user_name} />}>
+				<Route index element={<Home posts={posts} userData={userData} getPosts={getPosts}/>} />
+				<Route path="br/:subreaddit" element={<Subreaddit posts={posts} setSubId={setSubId} subId={subId} userData={userData} getPosts={getPosts} />} />
+				<Route path="br/:subreaddit/:postid" element={<Post posts={posts} userData={userData} getPosts={getPosts} />} />
 				{/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}
-				{/* <Route path="*" element={<Home />} /> */}
+				<Route path="*" element={<Home posts={posts} userData={userData} getPosts={getPosts} />} />
 			</Route>
 		</Routes>
 	);

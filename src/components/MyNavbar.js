@@ -8,7 +8,6 @@ import LogOut from './LogOut.js'
 import { Link } from 'react-router-dom'
 
 export default function MyNavbar(props) {
-
 	return (
 		<>
 			<Navbar variant="dark"
@@ -26,7 +25,8 @@ export default function MyNavbar(props) {
 							className="me-auto my-2 my-lg-0"
 							style={{ maxHeight: '100px' }}
 							navbarScroll>
-							{props.token.length > 0 ? <LogOut setToken={props.setToken} token={props.token} />
+							{props.token.length > 0 ? <><LogOut setToken={props.setToken} token={props.token} />
+													<p className="text-white mx-3 mt-3" >You are logged in as {props.userName}</p></>
 								:
 								<>
 									<Dropdown id="navbarScrollingDropdown" autoClose="outside">

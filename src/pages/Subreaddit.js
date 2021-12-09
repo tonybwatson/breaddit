@@ -14,7 +14,6 @@ export default function Subreaddit(props) {
 	// let subId = props.subId;
 	const savePosts = (res) => {
 		console.log(res)
-		// subId = res.data.subreaddit[0].id;
 		props.setSubId(res.data.subreaddit[0].id);
 		// console.log(subId)
 		setPosts(res.data.posts)
@@ -26,6 +25,7 @@ export default function Subreaddit(props) {
 		setLoading(true)
 		axiosHelper({ route: 'posts_by_sub/' + subreaddit, method: 'get', successMethod: savePosts });
 		// console.log(subreaddit);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [subreaddit])
 
 

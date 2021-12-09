@@ -38,7 +38,7 @@ function App() {
 
 	const [userData, setUserData] = useState({})
 	const saveUserData = (res) => {
-		console.log(res)
+		// console.log(res)
 		setUserData(res.data)
 	}
 	useEffect(() => {
@@ -46,17 +46,18 @@ function App() {
 			axiosHelper({ route: 'users', method: 'get', successMethod: saveUserData })
 		}
 	}, [token])
+	// console.log(userData)
 	return (
 
 		<Routes>
-			<Route path="/" element={<MyNavbar setToken={setToken} token={token} />}>
+			<Route path="/" element={<MyNavbar setToken={setToken} token={token} userName={userData.user_name}/>}>
 				<Route index element={<Home posts={posts} userData={userData} />} />
 				<Route path="br/:subreaddit" element={<Subreaddit posts={posts} setSubId={setSubId} subId={subId} userData={userData} />} />
 				<Route path="br/:subreaddit/:postid" element={<Post posts={posts} userData={userData}/>} />
 				{/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}
-				{/* <Route path="*" element={<NoMatch />} /> */}
+				{/* <Route path="*" element={<Home />} /> */}
 			</Route>
 		</Routes>
 	);

@@ -9,22 +9,23 @@ import DeleteButton from './DeleteButton'
 
 export default function PostCard({ post, home, postPage, subreaddit, userData }) {
 	// console.log({ post, home, postPage, subreaddit, userData })
-let karma = 0;
-console.log(post)
-const postKarma = Object.values(post.post_votes)
-console.log({postKarma})
+	let karma = 0;
+	// console.log(post)
+	const postKarma = Object.values(post.post_votes)
+	console.log({postKarma})
 
-const postKarmaFunction = () => {
-	for (let i = 0; i < postKarma.length; i++) {
-		if (post.post_votes[i].type_id === 1) {
-			karma++
-		} else if (post.post_votes[i].type_id === 2) {
-			karma--
+	const postKarmaFunction = () => {
+		for (let i = 0; i < postKarma.length; i++) {
+			if (post.post_votes[i].type_id === 1) {
+				karma++
+			} else if (post.post_votes[i].type_id === 2) {
+				karma--
+			}
 		}
-	} 
-}
-postKarmaFunction()
-console.log({karma})
+	}
+	postKarmaFunction()
+
+	// console.log({karma})
 	return (
 		<div>
 			<Card className="d-flex justify-content-center"

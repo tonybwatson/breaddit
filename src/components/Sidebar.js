@@ -3,17 +3,18 @@ import React from 'react'
 // import { Button, Card, Form, FormControl, Modal } from 'react-bootstrap'
 import CreateSub from './CreateSub'
 import CreatePost from './CreatePost'
-import Subreaddit from '../pages/Subreaddit';
 // import SingleModalForm from './SingleModalForm'
 
 export default function Sidebar(props) {
 console.log({props})
-  return Subreaddit ? (
+  return  ( 
     <>
+		{!props.home &&
       <CreatePost subId={props.subId} 
 			subName={props.posts}
 			/>
+		}
       <CreateSub />
     </>
-  ) : <CreateSub />
+  ) 
 }

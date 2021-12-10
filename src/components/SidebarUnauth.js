@@ -6,7 +6,7 @@ export default function SidebarUnauth() {
         <div>
             <Card className="bg-dark text-white border-white">
                 <h4 className="m-3">
-                    Create an account to make new subreaddits, posts, comments, upvote or downvote content, and save favorite subreaddits!
+                    Sign in or create an account to make new subreaddits, post, comment, and to upvote or downvote content!
                     </h4>
             </Card>
         </div>

@@ -14,7 +14,7 @@ export default function Home(props) {
 					{props.posts.map((post, i) => <PostCard key={i} post={post} home userData={props.userData} getPosts={props.getPosts} />)}
 				</Col>
 				<Col xs={2}>
-					{localStorage.getItem('token') ? <Sidebar /> : <SidebarUnauth />}
+					{localStorage.getItem('token') ? <Sidebar home/> : <SidebarUnauth />}
 				</Col>
 			</Row>
 		</Container>

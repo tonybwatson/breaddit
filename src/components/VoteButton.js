@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
 import upvote from '../img/upvote.png'
 import downvote from '../img/downvote.png'
@@ -34,7 +34,8 @@ export default function VoteButton(props) {
 
 			})
 			.catch(function (error) {
-				console.log(error);
+				// console.log(error);
+				alert('You must be logged in to vote!')
 			});
 	}
 

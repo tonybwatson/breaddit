@@ -16,18 +16,10 @@ function App() {
 	}
 	useEffect(() => {
 		getPosts()
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const getPosts = () => axiosHelper({ route: 'posts', method: 'get', successMethod: savePosts })
-
-	// const [postVotes, setPostVotes] = useState([])
-	// const savePostVotes = (res) => {
-	// 	// console.log({res})
-	// 	setPostVotes(res.data)
-	// }
-	// useEffect(()=>{
-	// 	axiosHelper({route: 'postvotes', method: 'get', successMethod: savePostVotes})
-	// })
 
 	const [token, setToken] = useState('')
 	useEffect(() => {
@@ -39,6 +31,7 @@ function App() {
 
 
 	const [userData, setUserData] = useState({})
+
 	const saveUserData = (res) => {
 		// console.log(res)
 		setUserData(res.data)
@@ -64,6 +57,4 @@ function App() {
 		</Routes>
 	);
 }
-
 export default App;
-

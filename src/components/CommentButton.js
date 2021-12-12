@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Card, Button, Form, Modal } from 'react-bootstrap'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
 export default function CommentButton(props) {
 	const [show, setShow] = useState(false);
@@ -10,9 +9,9 @@ export default function CommentButton(props) {
 	const token = localStorage.getItem('token');
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const navigate = useNavigate()
 
-	console.log({ props })
+
+	// console.log({ props })
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		axios({
@@ -35,6 +34,7 @@ export default function CommentButton(props) {
 			.then(function (response) {
 				// console.log(response);
 				setSuccess(!success);
+				props.getPosts();
 				// console.log(response)
 			})
 			.catch(function (error) {
@@ -49,16 +49,18 @@ export default function CommentButton(props) {
 	const handleRedirect = () => {
 		handleClose()
 		// navigate(`/br/${props.post.subreaddit.name}/${props.post.id}`)
-		window.location.reload();
-		// window.scrollTo(0,document.body.scrollHeight);
+		props.getPosts()
 	}
 
 	return (
 		<>
 			<Card>
-				<Button variant="dark" onClick={handleShow}>
-					Leave a Comment
+				{token ?
+					<Button variant="dark" onClick={handleShow}>
+						Leave a Comment
     			</Button>
+					: <Button variant="dark" disabled={true}>Sign in to Leave a Comment</Button>
+				}
 			</Card>
 			<Modal show={show} onHide={handleClose} centered>
 				<Modal.Header closeButton>

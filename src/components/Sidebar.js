@@ -6,12 +6,13 @@ import CreatePost from './CreatePost'
 // import SingleModalForm from './SingleModalForm'
 
 export default function Sidebar(props) {
-console.log({props})
+// console.log({props})
   return  ( 
     <>
 		{!props.home &&
       <CreatePost subId={props.subId} 
 			subName={props.posts}
+			getPosts={props.getPosts}
 			/>
 		}
       <CreateSub />

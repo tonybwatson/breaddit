@@ -2,10 +2,10 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import Loading from '../components/Loading'
 import PostCard from '../components/PostCard'
-import { Container, Col, Button } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 export default function Post(props) {
-    let { subreaddit, postid } = useParams();
+    let {  postid } = useParams();
     let tmpPost = undefined;
 
     if (props.post !== undefined) {
@@ -18,7 +18,7 @@ export default function Post(props) {
 
     return !!tmpPost ? (
         <Container xs={10}>
-            <PostCard post={tmpPost} postPage  userData={props.userData} />
+            <PostCard post={tmpPost} postPage  userData={props.userData} getPosts={props.getPosts}/>
         </Container>
     ) : <Loading />
 }

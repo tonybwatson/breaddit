@@ -21,7 +21,7 @@ export default function LogOut(props) {
 			}
 		})
 			.then(function (response) {
-				console.log(response)
+				// console.log(response)
 				localStorage.removeItem('token')
 				props.setToken('')
 			});

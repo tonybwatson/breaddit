@@ -13,7 +13,7 @@ export default function CreatePost(props) {
 	const handleShow = () => setShow(true);
 	const navigate = useNavigate()
 
-	console.log({ props })
+	// console.log({ props })
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -38,11 +38,11 @@ export default function CreatePost(props) {
 			.then(function (response) {
 				setSuccess(!success);
 				setNewPost(response)
-				console.log({ response })
+				// console.log({ response })
 
 			})
 			.catch(function (error) {
-				console.log(error);
+				// console.log(error);
 			});
 	}
 
@@ -56,9 +56,10 @@ export default function CreatePost(props) {
 
 	const handleRedirect = () => {
 		handleClose();
-		console.log({newPost})
+		// console.log({newPost})
+		props.getPosts()
 		navigate(`/br/${props?.subName[0]?.subreaddit?.name}/${newPost.data.data.id}`)
-		window.location.reload();
+		
 	}
 
 	return (

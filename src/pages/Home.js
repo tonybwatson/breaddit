@@ -10,10 +10,10 @@ export default function Home(props) {
 	return props.posts.length > 0 ? (
 		<Container>
 			<Row>
-				<Col xs={10}>
+				<Col xs={9}>
 					{props.posts.map((post, i) => <PostCard key={i} post={post} home userData={props.userData} getPosts={props.getPosts} />)}
 				</Col>
-				<Col xs={2}>
+				<Col xs={3}>
 					{localStorage.getItem('token') ? <Sidebar home/> : <SidebarUnauth />}
 				</Col>
 			</Row>

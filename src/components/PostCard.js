@@ -81,11 +81,11 @@ export default function PostCard(props) {
 								<Col xs={5}>
 									<CommentButton post={post} getPosts={props.getPosts} />
 								</Col>
-							</>
-						}
 						<Col xs={3}>
 							<ShareButton />
 						</Col>
+							</>
+						}
 						{home &&
 							<Col xs={6}>
 								<Card>

@@ -35,44 +35,41 @@ export default function PostCard(props) {
 				border="white">
 				<Card.Body>
 					<Row>
-						<Col xs={1} className="d-flex mt-1">
-							<VoteButton post_id={post.id} type_id={1} getPosts={getPosts} className="m-1" />
-							<p className="mx-1">{karma}</p>
-							<VoteButton post_id={post.id} type_id={2} getPosts={getPosts} className="m-1" />
+						{/* Vote buttons */}
+						<Col xs={1} >
+							<VoteButton post_id={post.id} type_id={1} getPosts={getPosts} />
+							<p className="m-1">{karma}</p>
+							<VoteButton post_id={post.id} type_id={2} getPosts={getPosts} />
 						</Col>
-						<Col xs={5}>
+
+						{/* Card headers and content */}
+						<Col xs={6} className="mx-3">
 							{postPage ? <Card.Title ><strong>{post.title}</strong></Card.Title>
-								: <Card.Title as={Link} to={`/br/${post.subreaddit.name}/${post.id}`}><strong>{post.title}</strong></Card.Title>
+								: <><Card.Title as={Link} to={`/br/${post.subreaddit.name}/${post.id}`} className="mx-2"><strong>{post.title}</strong></Card.Title></>
 							}
 						</Col>
-						{home &&
-							<Col>
-								<Card.Header as={Link} to={`/br/${post.subreaddit.name}`}>br/{post.subreaddit.name}</Card.Header>
-							</Col>
-						}
-						{postPage &&
-							<Col>
-								<Card.Header as={Link} to={`/br/${post.subreaddit.name}`}>br/{post.subreaddit.name}</Card.Header>
-							</Col>
-						}
 						<Col>
-							<Card.Text className="text-end"><strong>Posted by {post.user.user_name}</strong></Card.Text>
+							<Card.Text className="text-end"><strong>Posted by {post.user.user_name} </strong><br /></Card.Text>
+							{!subreaddit &&
+						<Col>
+							<Card.Header as={Link} to={`/br/${post.subreaddit.name}`} className="d-flex justify-content-end">br/{post.subreaddit.name}</Card.Header>
+						</Col>
+					}
 						</Col>
 					</Row>
+
+					
+
+
+
 					{/* {postPage && */}
 					<Card.Text>
 						{post.content}
 					</Card.Text>
 					{/* } */}
-					<Row>
-						{home &&
-							<Col xs={3}>
-								<Card>
-									<Button as={Link} to={`/br/${post.subreaddit.name}/${post.id}`} variant="dark">Comments</Button>
-								</Card>
-							</Col>
-						}
-						{subreaddit &&
+					{/* Bottom of card */}
+					<Row className="mt-2">
+						{!postPage &&
 							<Col xs={3}>
 								<Card>
 									<Button as={Link} to={`/br/${post.subreaddit.name}/${post.id}`} variant="dark">Comments</Button>

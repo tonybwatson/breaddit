@@ -21,22 +21,22 @@ export default function MyNavbar(props) {
 					<Navbar.Toggle aria-controls="navbarScroll" />
 					<Navbar.Collapse id="navbarScroll">
 						<Nav
-							className="me-auto my-2 my-lg-0"
+							className="me-auto my-0"
 							style={{ maxHeight: '100px' }}
 							navbarScroll>
 							{props.token.length > 0 ? <><LogOut setToken={props.setToken} token={props.token} />
-													<p className="text-white mx-3 mt-3" >You are logged in as {props.userName}</p></>
+								<p className="text-white mx-3 mt-3" >You are logged in as {props.userName}</p></>
 								:
 								<>
-									<Dropdown id="navbarScrollingDropdown" autoClose="outside">
-										<Dropdown.Toggle>Sign Up</Dropdown.Toggle>
+									<Dropdown id="navbarScrollingDropdown" autoClose="outside" >
+										<Dropdown.Toggle variant="dark"  className="pt-3">Sign Up</Dropdown.Toggle>
 										<Dropdown.Divider />
 										<Dropdown.Menu>
 											<SignUp setToken={props.setToken} />
 										</Dropdown.Menu>
 									</Dropdown>
 									<Dropdown id="navbarScrollingDropdown" autoClose="outside">
-										<Dropdown.Toggle>Sign In</Dropdown.Toggle>
+										<Dropdown.Toggle variant="dark"  className="pt-3">Sign In</Dropdown.Toggle>
 										<Dropdown.Menu>
 											<LogIn setToken={props.setToken} />
 										</Dropdown.Menu>

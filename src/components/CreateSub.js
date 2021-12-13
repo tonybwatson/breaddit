@@ -33,13 +33,14 @@ export default function CreateSub(props) {
 			},
 		})
 			.then(function (response) {
-				console.log(response);
+				// console.log(response);
 				// handleClose();
 				setSuccess(!success);
 				// console.log(response)
 			})
 			.catch(function (error) {
-				console.log(error);
+				// console.log(error);
+				alert('Subreaddit name already taken! Try another name!')
 			});
 	}
 	const handleChange = (e) => {

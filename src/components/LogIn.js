@@ -14,7 +14,7 @@ export default function LoginInput(props) {
 			data: {
 				username: data.formLoginEmail,
 				password: data.formLoginPassword,
-				client_secret: 'tsJPMuBrXDJ7cBwnaku6v2KLAK6dMmKBHZXRaDDC',
+				client_secret: 'E0VCmuXLtav4JehRVzsEETC4Wyps7656GIkmNz1l',
 				client_id: 2,
 				grant_type: 'password',
 				scope: ''

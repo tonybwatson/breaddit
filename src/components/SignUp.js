@@ -15,7 +15,7 @@ export default function SignUp(props) {
         user_name: data.formBasicName,
         email: data.formBasicEmail,
         password: data.formBasicPassword,
-        client_secret: 'tsJPMuBrXDJ7cBwnaku6v2KLAK6dMmKBHZXRaDDC',
+        client_secret: 'E0VCmuXLtav4JehRVzsEETC4Wyps7656GIkmNz1l',
         client_id: 2,
         grant_type: 'password',
         scope: ''
@@ -31,7 +31,7 @@ export default function SignUp(props) {
       },
     })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         const token = response.data.data.token
         localStorage.setItem('token', token)
         props.setToken(token)

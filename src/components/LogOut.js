@@ -27,6 +27,6 @@ export default function LogOut(props) {
 			});
 	}
     return (
-        <Button onClick={handleSubmit}>Log Out</Button>
+        <Button onClick={handleSubmit} variant="dark" className="border-white"><strong>Log Out</strong></Button>
     )
 }
